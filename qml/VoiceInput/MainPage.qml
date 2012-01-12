@@ -4,13 +4,28 @@ import com.nokia.meego 1.0
 Page {
     tools: commonTools
 
+    HeaderBar {
+        title: "VoiceInput"
+    }
+
     Column {
         anchors.centerIn: parent
-    Button{
-        text: "Web search"
+        spacing: 16
+        Button{
+            text: "Web search"
+            onClicked: {
+                registrationDialog.open()
+            }
+        }
+        Button {
+            text: "Send SMS"
+            onClicked: {
+                registrationDialog.open()
+            }
+        }
     }
-    Button {
-        text: "Send SMS"
-    }
+
+    RegistrationDialog {
+        id: registrationDialog
     }
 }
