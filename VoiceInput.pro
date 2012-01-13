@@ -18,6 +18,9 @@ symbian:TARGET.UID3 = 0xE7637522
 # Allow network access on Symbian
 symbian:TARGET.CAPABILITY += NetworkServices
 
+#Adding network for html uploader
+QT += network
+
 # If your application uses the Qt Mobility libraries, uncomment the following
 # lines and add the respective components to the MOBILITY variable.
 CONFIG += mobility
@@ -32,7 +35,7 @@ CONFIG += qdeclarative-boostable
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
     utils/audiorecorder.cpp \
-    utils/qgspeechapi.cpp
+    utils/httpuploader.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -49,4 +52,4 @@ OTHER_FILES += \
 
 HEADERS += \
     utils/audiorecorder.h \
-    utils/qgspeechapi.h
+    utils/httpuploader.h
