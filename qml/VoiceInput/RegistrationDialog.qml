@@ -4,13 +4,19 @@ import com.nokia.meego 1.0
 
 Dialog {
     id: registrationDialog
+    signal stopPressed()
+
     title: Label {
         text: "Speak now"
     }
     content: Column {
         Button {
+            id: stopButton
             text: "Stop"
-            onClicked: { registrationDialog.close() }
+            onClicked: {
+                stopPressed();
+                registrationDialog.close();
+            }
         }
     }
 }

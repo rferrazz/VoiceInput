@@ -8,6 +8,7 @@ PageStackWindow {
 
     MainPage {
         id: mainPage
+        objectName: "mainPage"
     }
 
     ToolBarLayout {

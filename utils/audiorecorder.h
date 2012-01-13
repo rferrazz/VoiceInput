@@ -12,16 +12,20 @@ class AudioRecorder : public QObject
     Q_OBJECT
 public:
     explicit AudioRecorder(QObject *parent = 0);
+    ~AudioRecorder();
     
 signals:
+    void sendFilePath(QVariant path);
     
 public slots:
-    bool startRecording();
+    void startRecording();
     void stopRecording();
+    void requestFilePath();
 
 private:
     QAudioCaptureSource *source;
     QMediaRecorder *recorder;
+    QString audioFile;
 };
 
 #endif // AUDIORECORDER_H
