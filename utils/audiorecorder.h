@@ -2,6 +2,10 @@
 #define AUDIORECORDER_H
 
 #include <QObject>
+#include <QMediaRecorder>
+#include <QAudioCaptureSource>
+#include <QDesktopServices>
+#include <QDir>
 
 class AudioRecorder : public QObject
 {
@@ -12,9 +16,12 @@ public:
 signals:
     
 public slots:
-    void startRecording();
+    bool startRecording();
     void stopRecording();
-    
+
+private:
+    QAudioCaptureSource *source;
+    QMediaRecorder *recorder;
 };
 
 #endif // AUDIORECORDER_H
