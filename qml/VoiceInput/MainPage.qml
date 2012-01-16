@@ -5,8 +5,9 @@ Page {
     tools: commonTools
     property string filePath: ""
     signal startRecording()
-    signal stopRecording();
-    signal requestPath();
+    signal stopRecording()
+    signal requestPath()
+    signal sendToGoogle(string path)
 
     function startRec(){
         registrationDialog.open();
@@ -17,6 +18,10 @@ Page {
     function getFilePath(path){
         filePath = path;
         console.log(path);
+    }
+
+    function response(text){
+        console.log(text);
     }
 
     HeaderBar {
@@ -45,7 +50,7 @@ Page {
         onStopPressed: {
             stopRecording();
             requestPath();
-            //TODO: inviare i dati a google, ricevere la stringa e eseguire l'azione
+            sendToGoogle(filePath);
         }
     }
 }

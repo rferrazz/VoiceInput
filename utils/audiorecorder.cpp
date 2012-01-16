@@ -7,7 +7,7 @@ AudioRecorder::AudioRecorder(QObject *parent) :
     source = new QAudioCaptureSource(this);
     recorder = new QMediaRecorder(source, this);
     QString folder = QDesktopServices::storageLocation(QDesktopServices::CacheLocation);
-    audioFile = QDir::toNativeSeparators(folder+"VoiceInputRecord.flac");
+    audioFile = folder+"VoiceInputRecord.flac";
     recorder->setOutputLocation(QUrl(audioFile));
 }
 
@@ -23,6 +23,7 @@ void AudioRecorder::startRecording(){
     QAudioEncoderSettings encoderSettings;
     encoderSettings.setCodec("audio/FLAC");
     encoderSettings.setBitRate(16000);
+    encoderSettings.setEncodingMode(QtMultimediaKit::ConstantBitRateEncoding);
     recorder->setEncodingSettings(encoderSettings);
     recorder->record();
 }

@@ -35,7 +35,7 @@ CONFIG += qdeclarative-boostable
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
     utils/audiorecorder.cpp \
-    utils/httpuploader.cpp
+    utils/qgspeechapi.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -52,4 +52,4 @@ OTHER_FILES += \
 
 HEADERS += \
     utils/audiorecorder.h \
-    utils/httpuploader.h
+    utils/qgspeechapi.h
