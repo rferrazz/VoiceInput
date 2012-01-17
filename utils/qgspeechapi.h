@@ -2,7 +2,8 @@
 #define QGSPEECHAPI_H
 
 #include <QObject>
-#include <QHttp>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
 #include <QFileInfo>
 #include <QBuffer>
 #include <QVariant>
@@ -18,10 +19,11 @@ signals:
     
 public slots:
     void sendRequest(QString file);
-    void readResponse(int id, bool error);
+    void readResponse(QNetworkReply *reply);
 
 private:
-    QHttp *http;
+    QNetworkAccessManager *manager;
+    QNetworkRequest *request;
     
 };
 
