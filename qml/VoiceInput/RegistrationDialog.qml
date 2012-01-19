@@ -6,9 +6,6 @@ Dialog {
     id: registrationDialog
     signal stopPressed()
 
-    title: Label {
-        text: "Speak now"
-    }
     content: Column {
         Button {
             id: stopButton

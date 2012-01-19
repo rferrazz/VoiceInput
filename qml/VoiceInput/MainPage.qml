@@ -17,11 +17,12 @@ Page {
 
     function getFilePath(path){
         filePath = path;
-        console.log(path);
     }
 
     function response(text){
         console.log(text);
+        var json = eval('('+text+')');
+        resultLabel.text = json.hypotheses[0].utterance;
     }
 
     HeaderBar {
@@ -32,16 +33,14 @@ Page {
         anchors.centerIn: parent
         spacing: 16
         Button{
-            text: "Web search"
+            text: "Test"
             onClicked: {
                 startRec();
             }
         }
-        Button {
-            text: "Send SMS"
-            onClicked: {
-                startRec();
-            }
+        Label {
+            id: resultLabel
+            text: ""
         }
     }
 
