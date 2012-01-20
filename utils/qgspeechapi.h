@@ -23,7 +23,7 @@ public slots:
 
 private:
     QNetworkAccessManager *manager;
-    QNetworkRequest *request;
+    QUrl *requestUrl;
     
 };
 

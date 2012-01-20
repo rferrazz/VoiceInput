@@ -9,6 +9,7 @@ AudioRecorder::AudioRecorder(QObject *parent) :
     QString folder = QDesktopServices::storageLocation(QDesktopServices::CacheLocation);
     audioFile = folder+"VoiceInputRecord.flac";
     recorder->setOutputLocation(QUrl(audioFile));
+    QObject::connect(recorder, SIGNAL(stateChanged(QMediaRecorder::State)), this, SLOT(getRecordingState(QMediaRecorder::State)));
 }
 
 AudioRecorder::~AudioRecorder(){
@@ -37,4 +38,12 @@ void AudioRecorder::stopRecording(){
 
 void AudioRecorder::requestFilePath(){
     emit sendFilePath(QVariant(audioFile));
+}
+
+void AudioRecorder::getRecordingState(QMediaRecorder::State state){
+    if(state == QMediaRecorder::StoppedState){
+        emit stopped();
+        return;
+    }
+    emit started();
 }

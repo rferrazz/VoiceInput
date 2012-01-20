@@ -10,7 +10,6 @@ Page {
     signal sendToGoogle(string path)
 
     function startRec(){
-        registrationDialog.open();
         startRecording();
         //TODO: ricordare l'azione da eseguire con il testo risultante
     }
@@ -23,6 +22,14 @@ Page {
         console.log(text);
         var json = eval('('+text+')');
         resultLabel.text = json.hypotheses[0].utterance;
+    }
+
+    function recordingStarted(){
+        registrationDialog.open();
+    }
+
+    function recordingStopped(){
+        registrationDialog.close();
     }
 
     HeaderBar {

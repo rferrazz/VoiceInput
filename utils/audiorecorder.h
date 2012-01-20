@@ -16,11 +16,14 @@ public:
     
 signals:
     void sendFilePath(QVariant path);
+    void started();
+    void stopped();
     
 public slots:
     void startRecording();
     void stopRecording();
     void requestFilePath();
+    void getRecordingState(QMediaRecorder::State state);
 
 private:
     QAudioCaptureSource *source;

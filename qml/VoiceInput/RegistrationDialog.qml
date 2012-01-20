@@ -12,7 +12,6 @@ Dialog {
             text: "Stop"
             onClicked: {
                 stopPressed();
-                registrationDialog.close();
             }
         }
     }

@@ -21,6 +21,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QObject::connect(&recorder, SIGNAL(sendFilePath(QVariant)), page, SLOT(getFilePath(QVariant)));
     QObject::connect(page, SIGNAL(sendToGoogle(QString)), &googleApi, SLOT(sendRequest(QString)));
     QObject::connect(&googleApi, SIGNAL(result(QVariant)), page, SLOT(response(QVariant)));
+    QObject::connect(&recorder, SIGNAL(started()), page, SLOT(recordingStarted()));
+    QObject::connect(&recorder, SIGNAL(stopped()), page, SLOT(recordingStopped()));
 
     viewer.showExpanded();
 
