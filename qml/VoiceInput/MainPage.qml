@@ -9,11 +9,6 @@ Page {
     signal requestPath()
     signal sendToGoogle(string path)
 
-    function startRec(){
-        startRecording();
-        //TODO: ricordare l'azione da eseguire con il testo risultante
-    }
-
     function getFilePath(path){
         filePath = path;
     }
@@ -22,14 +17,15 @@ Page {
         console.log(text);
         var json = eval('('+text+')');
         resultLabel.text = json.hypotheses[0].utterance;
+        Qt.openUrlExternally("http://www.google.com/m/search?client=ms-nokia-meego&q="+json.hypotheses[0].utterance);
     }
 
     function recordingStarted(){
-        registrationDialog.open();
+        recButton.text = "Stop"
     }
 
     function recordingStopped(){
-        registrationDialog.close();
+        recButton.text = "Start"
     }
 
     HeaderBar {
@@ -40,23 +36,22 @@ Page {
         anchors.centerIn: parent
         spacing: 16
         Button{
-            text: "Test"
+            id: recButton
+            text: "Start"
+            checkable: true
             onClicked: {
-                startRec();
+                if(checked)
+                    startRecording();
+                else{
+                    stopRecording();
+                    requestPath();
+                    sendToGoogle(filePath);
+                }
             }
         }
         Label {
             id: resultLabel
             text: ""
-        }
-    }
-
-    RegistrationDialog {
-        id: registrationDialog
-        onStopPressed: {
-            stopRecording();
-            requestPath();
-            sendToGoogle(filePath);
         }
     }
 }

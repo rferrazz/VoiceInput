@@ -4,7 +4,7 @@
 QGSpeechApi::QGSpeechApi(QObject *parent) :
     QObject(parent)
 {
-    requestUrl = new QUrl("http://www.google.com/speech-api/v1/recognize");
+    requestUrl = new QUrl("https://www.google.com/speech-api/v1/recognize");
     requestUrl->addEncodedQueryItem("xjerr", "1");
     requestUrl->addEncodedQueryItem("client", "chromium");
     requestUrl->addEncodedQueryItem("pfilter", "2");
@@ -23,9 +23,10 @@ void QGSpeechApi::sendRequest(QString file){
     ffile->open(QFile::ReadOnly);
     request->setRawHeader("Accept","*/*");
     request->setRawHeader("Connection", "Keep-Alive");
-    request->setRawHeader("Content-Type", "audio/x-flac; rate=16000");
+    request->setRawHeader("Content-Type", "audio/x-flac; rate=44000");
+    request->setRawHeader("Accept-Language", "*");
     request->setRawHeader("Content-Length", size);
-    manager->post(*request, (QIODevice *)ffile);
+    manager->post(*request, ffile);
 }
 
 void QGSpeechApi::readResponse(QNetworkReply *reply){

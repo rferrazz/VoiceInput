@@ -23,9 +23,10 @@ void AudioRecorder::startRecording(){
     source->setAudioInput(source->defaultAudioInput());
     QAudioEncoderSettings encoderSettings;
     encoderSettings.setChannelCount(1);
+    encoderSettings.setSampleRate(44000);
+    // for FLAC encoding:
     encoderSettings.setCodec("audio/FLAC");
-    encoderSettings.setBitRate(16000);
-    encoderSettings.setEncodingMode(QtMultimediaKit::ConstantBitRateEncoding);
+    encoderSettings.setEncodingMode(QtMultimediaKit::ConstantQualityEncoding);
     encoderSettings.setQuality(QtMultimediaKit::EncodingQuality(QtMultimediaKit::VeryLowQuality));
     recorder->setEncodingSettings(encoderSettings);
     recorder->record();
