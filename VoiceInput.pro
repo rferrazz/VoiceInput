@@ -54,3 +54,6 @@ HEADERS += \
     utils/audiorecorder.h \
     utils/qgspeechapi.h \
     utils/qmlclipboardadapter.h
+
+RESOURCES += \
+    res.qrc

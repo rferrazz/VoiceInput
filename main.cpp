@@ -11,6 +11,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     AudioRecorder recorder;
     QGSpeechApi googleApi;
 
+    //load translations
+    QTranslator translator;
+    translator.load("tr_"+QLocale::system().name(), ":/");
+    app->installTranslator(&translator);
+
     qmlRegisterType<QmlClipboardAdapter>("clipadapter", 1, 0, "QClipboard");
 
     QmlApplicationViewer viewer;
@@ -19,6 +24,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QObject *root = (QObject *)viewer.rootObject();
     QObject *page = root->findChild<QObject *>("mainPage");
 
+    //connect signals
     QObject::connect(page, SIGNAL(startRecording()), &recorder, SLOT(startRecording()));
     QObject::connect(page, SIGNAL(stopRecording()), &recorder, SLOT(stopRecording()));
     QObject::connect(page, SIGNAL(requestPath()), &recorder, SLOT(requestFilePath()));

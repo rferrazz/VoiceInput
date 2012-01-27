@@ -1,7 +1,6 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 
-import clipadapter 1.0
 import "VoiceActions.js" as VA
 
 Page {
@@ -18,22 +17,23 @@ Page {
 
     function response(text){
         console.log(text);
-        VA.evalutateAndExecute(text);
+        headerBar.loading = false;
+        if(VA.evalutateAndExecute(text) == -1)
+            resultLabel.text = qsTr("Voice not recognized");
     }
 
     function recordingStarted(){
-        recButton.text = "Stop"
+        recButton.text = qsTr("Stop");
+        resultLabel.text = "";
     }
 
     function recordingStopped(){
-        recButton.text = "Start"
-    }
-
-    QClipboard {
-        id: clipboard
+        recButton.text = qsTr("Start");
+        headerBar.loading = true;
     }
 
     HeaderBar {
+        id: headerBar
         title: "VoiceInput"
     }
 
@@ -42,7 +42,7 @@ Page {
         spacing: 16
         Button{
             id: recButton
-            text: "Start"
+            text: qsTr("Start");
             checkable: true
             onClicked: {
                 if(checked)
@@ -57,6 +57,7 @@ Page {
         Label {
             id: resultLabel
             text: ""
+            horizontalAlignment: Text.AlignHCenter
         }
     }
 }

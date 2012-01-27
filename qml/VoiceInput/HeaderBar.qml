@@ -8,6 +8,7 @@ Item {
 
     property alias title: h_title.text
     property alias subtitle: h_subtilte.text
+    property bool loading: false
 
     Rectangle {
         width: parent.width
@@ -40,6 +41,15 @@ Item {
             font.family: "Nokia Pure Text Light"
             font.pixelSize: 22
             color:"blue"
+        }
+
+        BusyIndicator{
+            id: busyIndicator
+            running: loading
+            visible: loading
+            anchors.verticalCenter: top_banner.verticalCenter
+            anchors.right: top_banner.right
+            anchors.rightMargin: 20
         }
     }
 }
