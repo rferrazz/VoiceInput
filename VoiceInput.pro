@@ -52,4 +52,5 @@ OTHER_FILES += \
 
 HEADERS += \
     utils/audiorecorder.h \
-    utils/qgspeechapi.h
+    utils/qgspeechapi.h \
+    utils/qmlclipboardadapter.h

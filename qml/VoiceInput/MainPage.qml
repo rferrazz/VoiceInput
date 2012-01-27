@@ -1,6 +1,9 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 
+import clipadapter 1.0
+import "VoiceActions.js" as VA
+
 Page {
     tools: commonTools
     property string filePath: ""
@@ -15,9 +18,7 @@ Page {
 
     function response(text){
         console.log(text);
-        var json = eval('('+text+')');
-        resultLabel.text = json.hypotheses[0].utterance;
-        Qt.openUrlExternally("http://www.google.com/m/search?client=ms-nokia-meego&q="+json.hypotheses[0].utterance);
+        VA.evalutateAndExecute(text);
     }
 
     function recordingStarted(){
@@ -26,6 +27,10 @@ Page {
 
     function recordingStopped(){
         recButton.text = "Start"
+    }
+
+    QClipboard {
+        id: clipboard
     }
 
     HeaderBar {

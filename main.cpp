@@ -1,13 +1,17 @@
 #include <QtGui/QApplication>
+#include <QtDeclarative>
 #include "qmlapplicationviewer.h"
 #include "utils/audiorecorder.h"
 #include "utils/qgspeechapi.h"
+#include "utils/qmlclipboardadapter.h"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
     QScopedPointer<QApplication> app(createApplication(argc, argv));
     AudioRecorder recorder;
     QGSpeechApi googleApi;
+
+    qmlRegisterType<QmlClipboardAdapter>("clipadapter", 1, 0, "QClipboard");
 
     QmlApplicationViewer viewer;
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
